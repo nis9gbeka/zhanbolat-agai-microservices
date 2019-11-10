@@ -33,10 +33,10 @@ public class MyArrivalsResourse {
 
 
 
-        UserOrderr orderrs = restTemplate.getForObject("http://localhost:8083/orderrs/users/" + userId, UserOrderr.class);
+        UserOrderr orderrs = restTemplate.getForObject("http://orders-server/orderrs/users/" + userId, UserOrderr.class);
 
         return orderrs.getUserOrderr().stream().map(orderr -> {
-            Packk packk = restTemplate.getForObject("http://localhost:8082/packks/" + orderr.getPackkId(), Packk.class);
+            Packk packk = restTemplate.getForObject("http://bexultan-server/packks/" + orderr.getPackkId(), Packk.class);
 
             return new ArrivalItem(orderr.getCity(), packk.getPackk(), "Test", orderr.getDate_time());
         })
